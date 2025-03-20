@@ -1,0 +1,64 @@
+/* Center the form */
+.container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  background: hsl(196, 16%, 77%);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Form control styling */
+.form-control {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.form-control label {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+/* Stylish input */
+.form-control input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: 0.3s ease-in-out;
+}
+
+.form-control input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Form actions */
+.form-actions {
+  margin-top: 10px;
+}
+
+/* Stylish button */
+.form-actions button {
+  background: #007bff;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.form-actions button:hover {
+  background: #0056b3;
+}
