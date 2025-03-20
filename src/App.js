@@ -1,11 +1,11 @@
-import AddUser from './components/AddUser/AddUser';
+import React from 'react'
 
 function App() {
   return (
-    <div className="App">
-     <AddUser/>
-    </div>
-  );
+    <>
+    <div>hello there.</div>
+    <h1>Niway</h1></>
+  )
 }
 
-export default App;
+export default App
