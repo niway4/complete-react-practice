@@ -1,6 +1,16 @@
+import React from 'react';
 import { useReducer } from 'react';
+// import CartContext from './cart-context';
 
-import CartContext from './cart-context';
+
+const CartContext = React.createContext({
+  items: [],
+  totalAmount: 0,
+  addItem: (item) => {},
+  removeItem: (id) => {}
+});
+
+// export default CartContext;
 
 const defaultCartState = {
   items: [],
@@ -87,3 +97,4 @@ const CartProvider = (props) => {
 };
 
 export default CartProvider;
+export { CartContext };
