@@ -1,16 +1,16 @@
-import React from 'react';
-import { useReducer } from 'react';
-// import CartContext from './cart-context';
-
+import { type } from "@testing-library/user-event/dist/type";
+import React from "react";
+import { useReducer } from "react";
 
 const CartContext = React.createContext({
   items: [],
   totalAmount: 0,
   addItem: (item) => {},
-  removeItem: (id) => {}
+  removeItem: (id) => {},
+  resetItem: () => {},
 });
 
-// export default CartContext;
+
 
 const defaultCartState = {
   items: [],
@@ -18,7 +18,7 @@ const defaultCartState = {
 };
 
 const cartReducer = (state, action) => {
-  if (action.type === 'ADD') {
+  if (action.type === "ADD") {
     const updatedTotalAmount =
       state.totalAmount + action.item.price * action.item.amount;
 
@@ -44,7 +44,7 @@ const cartReducer = (state, action) => {
       totalAmount: updatedTotalAmount,
     };
   }
-  if (action.type === 'REMOVE') {
+  if (action.type === "REMOVE") {
     const existingCartItemIndex = state.items.findIndex(
       (item) => item.id === action.id
     );
@@ -52,7 +52,7 @@ const cartReducer = (state, action) => {
     const updatedTotalAmount = state.totalAmount - existingItem.price;
     let updatedItems;
     if (existingItem.amount === 1) {
-      updatedItems = state.items.filter(item => item.id !== action.id);
+      updatedItems = state.items.filter((item) => item.id !== action.id);
     } else {
       const updatedItem = { ...existingItem, amount: existingItem.amount - 1 };
       updatedItems = [...state.items];
@@ -61,8 +61,14 @@ const cartReducer = (state, action) => {
 
     return {
       items: updatedItems,
-      totalAmount: updatedTotalAmount
+      totalAmount: updatedTotalAmount,
     };
+  }
+  if (action.type === "RESET") {
+    return {
+      items: [],
+      totalAmount: 0,
+    } ;
   }
 
   return defaultCartState;
@@ -75,11 +81,14 @@ const CartProvider = (props) => {
   );
 
   const addItemToCartHandler = (item) => {
-    dispatchCartAction({ type: 'ADD', item: item });
+    dispatchCartAction({ type: "ADD", item: item });
   };
 
   const removeItemFromCartHandler = (id) => {
-    dispatchCartAction({ type: 'REMOVE', id: id });
+    dispatchCartAction({ type: "REMOVE", id: id });
+  };
+  const resetItemsFromCArtHandler = () => {
+    dispatchCartAction({ type: "RESET" });
   };
 
   const cartContext = {
@@ -87,6 +96,7 @@ const CartProvider = (props) => {
     totalAmount: cartState.totalAmount,
     addItem: addItemToCartHandler,
     removeItem: removeItemFromCartHandler,
+    resetCart: resetItemsFromCArtHandler,
   };
 
   return (

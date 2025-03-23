@@ -4,11 +4,10 @@ import MealItem from "./MealItem/MealItem";
 import classes from "./AvailableMeals.module.css";
 
 const AvailableMeals = () => {
-  const [meals, setMeals] = useState([]); // State to store meals
-  const [isLoading, setIsLoading] = useState(true); // State for loading status
-  const [error, setError] = useState(null); // State for error handling
+  const [meals, setMeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Fetch meals when the component mounts
   useEffect(() => {
     const fetchMeals = async () => {
       try {
@@ -21,11 +20,10 @@ const AvailableMeals = () => {
         }
 
         const MEALS = await response.json();
-    
-        setMeals(MEALS);
 
+        setMeals(MEALS);
       } catch (error) {
-        setError(error.message); 
+        setError(error.message);
       } finally {
         setIsLoading(false);
       }
@@ -38,7 +36,6 @@ const AvailableMeals = () => {
     return <p>Loading meals...</p>;
   }
 
- 
   if (error) {
     return <p>{error}</p>;
   }
