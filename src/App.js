@@ -1,29 +1,22 @@
-import { useState } from 'react';
+import { Route, Routes, Navigate } from "react-router-dom";
 
-import Header from './components/Layout/Header';
-import Meals from './components/Meals/Meals';
-import Cart from './components/Cart/Cart';
-import CartProvider from './store/CartProvider';
+import AllQuotes from "./pages/AllQuotes";
+import QuoteDetail from "./pages/QuoteDetail";
+import NewQuote from "./pages/NewQuote";
+import NotFound from "./pages/NotFound";
+import Layout from "./components/layout/Layout";
 
 function App() {
-  const [cartIsShown, setCartIsShown] = useState(false);
-
-  const showCartHandler = () => {
-    setCartIsShown(true);
-  };
-
-  const hideCartHandler = () => {
-    setCartIsShown(false);
-  };
-
   return (
-    <CartProvider>
-      {cartIsShown && <Cart onClose={hideCartHandler} />}
-      <Header onShowCart={showCartHandler} />
-      <main>
-        <Meals />
-      </main>
-    </CartProvider>
+    <Layout>
+      <Routes>
+        <Route path="/" exact element={<Navigate to="/quotes" />} />
+        <Route path="/quotes" exact element={<AllQuotes />} />
+        <Route path="/quotes/:quoteId" element={<QuoteDetail />} />
+        <Route path="/new-quote" element={<NewQuote />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Layout>
   );
 }
 

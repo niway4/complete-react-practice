@@ -1,0 +1,10 @@
+/* Styling for the Home component main div */
+.Page {
+    width: 100%;
+    height: 96vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background-color: lightgreen;
+}
